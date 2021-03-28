@@ -1,0 +1,2 @@
+App.showContacts();
+App.setEditAndRemoveBtnsOnClick();
