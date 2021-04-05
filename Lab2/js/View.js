@@ -2,11 +2,23 @@ class View {
     constructor() {
         this.contactsTable = document.querySelector('#contacts');
         this.createContactForm = document.querySelector('#createForm');
+        this.loginForm = document.querySelector('#login');
+        this.registrationForm = document.querySelector('#registration');
+        this.loginLogoutItem = document.querySelector('#login-page');
     }
 
     getEditInputValue = (inputName, id) => document.querySelector(`#${inputName}${id}`).value;
 
-    getNewContactInputValue = inputName => document.querySelector(`#${inputName}`).value;
+    getFormInputValue = inputName => document.querySelector(`#${inputName}`).value;
+
+    getRegistrationSexValue = () => [...document.querySelectorAll('.sex')].find(radio => radio.checked).value;
+
+    hideNonAuthorizedItems = () => {
+        document.querySelector('#profile').style.display = 'none';
+        if (document.querySelector('#add-contact')) {
+            document.querySelector('#add-contact').style.display = 'none';
+        }
+    };
 
     createContactComponent = ({ id, name, number, cityandCountry }) => {
         const element = document.createElement('tr');
@@ -62,5 +74,12 @@ class View {
         message.innerHTML = 'No contacts.';
         message.classList.add('display-5', 'fw-bold', 'text-light');
         return message;
+    };
+
+    changeLoginOnLogoutLinkItem = () => {
+        const elem = document.createElement('a');
+        elem.classList.add('nav-link');
+        elem.innerHTML = 'Logout';
+        return elem;
     };
 }

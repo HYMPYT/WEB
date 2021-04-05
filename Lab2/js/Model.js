@@ -1,29 +1,52 @@
 class Model {
     constructor() {
-        this.contacts = JSON.parse(localStorage.getItem('contacts')).sort((a, b) => (a.name > b.name ? 1 : -1));
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.users = JSON.parse(localStorage.getItem('users'));
     }
 
     getContact = id => {
-        return this.contacts[id];
+        return this.currentUser ? this.currentUser.contacts[id] : null;
     };
 
     getContacts = () => {
-        return this.contacts;
+        return this.currentUser ? this.currentUser.contacts : null;
     };
 
     addContact = contact => {
-        this.contacts.push(contact);
-        localStorage.setItem('contacts', JSON.stringify(this.contacts));
+        this.currentUser.contacts.push(contact);
+        localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
     };
 
     editContact = (id, editedContact) => {
-        console.log(id, editedContact);
-        this.contacts[id] = editedContact;
-        localStorage.setItem('contacts', JSON.stringify(this.contacts));
+        this.currentUser.contacts[id] = editedContact;
+        localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
     };
 
     removeContact = id => {
-        this.contacts = this.contacts.filter((_, idx) => idx !== id);
-        localStorage.setItem('contacts', JSON.stringify(this.contacts));
+        this.currentUser.contacts = this.contacts.filter((_, idx) => idx !== id);
+        localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+    };
+
+    login = (email, password) => {
+        const currentUser = this.users.find(u => email === u.email && password === u.password);
+        if (currentUser) {
+            this.currentUser = currentUser;
+            localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+            return true;
+        }
+        return false;
+    };
+
+    registration = (username, email, password, sex, birthday) => {
+        const newUser = { username, email, password, sex, birthday, contacts: [] };
+        this.users.push(newUser);
+        this.currentUser = newUser;
+        localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+        localStorage.setItem('users', JSON.stringify(this.users));
+    };
+
+    logout = () => {
+        this.currentUser = null;
+        localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
     };
 }

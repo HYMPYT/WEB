@@ -1,2 +1,4 @@
-App.showContacts();
-App.setEditAndRemoveBtnsOnClick();
+if (App.IsAuthorized()) {
+    App.showContacts();
+    App.setEditAndRemoveBtnsOnClick();
+}
