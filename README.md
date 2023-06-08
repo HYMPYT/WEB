@@ -1,6 +1,6 @@
 Lab work
 
-Vladyslav Hleb
+Levchuk Yevhen
 
 Lab1:https://docs.google.com/document/d/1y6AHtRW7vR4CW8YCwAzgM-na9TeTX2Pd/edit?usp=sharing&ouid=102295054126869433686&rtpof=true&sd=true
 Lab2:https://docs.google.com/document/d/1ZlnzOKr0bR9Jsk20CDVmNPWg2dmn3xAK/edit?usp=sharing&ouid=102295054126869433686&rtpof=true&sd=true
